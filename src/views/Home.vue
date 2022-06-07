@@ -2,17 +2,18 @@
   <div class="home">
     <div v:if="projects.length">
       <div v-for="project in projects" :key="project.id">
-        <SingleProject :project="project" @delete="handleDeleteProject" />
+        <SingleProject
+          :project="project"
+          @delete="handleDeleteProject"
+          @complete="handleCompleted"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-
 import SingleProject from "../components/SingleProject.vue";
-
 export default {
   name: "Home",
   components: { SingleProject },
@@ -32,6 +33,12 @@ export default {
       this.projects = this.projects.filter((project) => {
         return project.id !== id;
       });
+    },
+    handleCompleted(id) {
+      let project = this.projects.find((project) => {
+        return project.id === id;
+      });
+      project.completed = !project.completed;
     },
   },
 };

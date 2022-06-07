@@ -1,11 +1,14 @@
 <template>
-  <div class="project">
+  <div class="project" :class="{ completed: project.completed }">
     <div class="actions">
       <h3 @click="showDescription = !showDescription">{{ project.title }}</h3>
       <div class="icons">
         <span class="material-icons"> edit </span>
+
         <span class="material-icons" @click="deleteProject"> delete </span
-        ><span class="material-icons"> done </span>
+        ><span class="material-icons check" @click="completeProject">
+          done
+        </span>
       </div>
     </div>
     <div v-if="showDescription" class="description">
@@ -26,6 +29,17 @@ export default {
     deleteProject() {
       fetch(this.url, { method: "DELETE" })
         .then(() => this.$emit("delete", this.project.id))
+        .catch((err) => console.error(err));
+    },
+    completeProject() {
+      fetch(this.url, {
+        method: "PATCH",
+        header: { "Content-Type": "application/json" },
+        body: JSON.stringify({ completed: !this.project.completed }),
+      })
+        .then(() => {
+          this.$emit("complete", this.project.id);
+        })
         .catch((err) => console.error(err));
     },
   },
@@ -55,5 +69,11 @@ h3 {
 }
 .actions span:hover {
   color: rgb(92, 89, 89);
+}
+.project.completed {
+  border-left: 4px solid #55ee09;
+}
+.project.completed .check {
+  color: #55ee09;
 }
 </style>
