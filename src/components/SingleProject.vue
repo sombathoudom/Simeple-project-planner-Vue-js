@@ -1,10 +1,14 @@
 <template>
   <div class="project" :class="{ completed: project.completed }">
     <div class="actions">
-      <h3 @click="showDescription = !showDescription">{{ project.title }}</h3>
+      <h3 @click="handleShowDetail">
+        {{ project.title }}
+        <span class="material-icons down"> {{ this.icon }} </span>
+      </h3>
       <div class="icons">
-        <span class="material-icons"> edit </span>
-
+        <router-link :to="{ name: 'EditProject', params: { id: project.id } }">
+          <span class="material-icons"> edit </span>
+        </router-link>
         <span class="material-icons" @click="deleteProject"> delete </span
         ><span class="material-icons check" @click="completeProject">
           done
@@ -23,9 +27,20 @@ export default {
     return {
       showDescription: false,
       url: "http://localhost:3000/projects" + this.project.id, //it's from props
+      icon: "expand_more",
+      toogle: 1,
     };
   },
   methods: {
+    handleShowDetail() {
+      if (this.toogle % 2 == 0) {
+        this.icon = "expand_more";
+      } else {
+        this.icon = "expand_less";
+      }
+      this.showDescription = !this.showDescription;
+      this.toogle++;
+    },
     deleteProject() {
       fetch(this.url, { method: "DELETE" })
         .then(() => this.$emit("delete", this.project.id))

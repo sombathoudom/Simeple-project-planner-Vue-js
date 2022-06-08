@@ -38,9 +38,6 @@ form {
   background-color: rgb(255, 255, 255);
   padding: 20px;
   border-radius: 20px;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
 }
 label {
   display: block;

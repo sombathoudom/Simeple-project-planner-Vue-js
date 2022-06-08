@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import AddProject from "../views/addProject.vue";
+import EditProject from "../views/editProject.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -14,6 +15,12 @@ const routes = [
     path: "/add/project",
     name: "AddProject",
     component: AddProject,
+  },
+  {
+    path: "/edit/project/:id",
+    name: "EditProject",
+    component: EditProject,
+    props: true,
   },
 ];
 
