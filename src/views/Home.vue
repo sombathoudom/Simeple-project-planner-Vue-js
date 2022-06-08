@@ -26,9 +26,15 @@ export default {
     };
   },
   mounted() {
-    fetch("https://learningtoolxd.netlify.app")
+    fetch("https://62a05917202ceef7086b59b7.mockapi.io/dom/db", {
+      headers: { "Access-Control-Allow-Origin": "*" },
+    })
       .then((res) => res.json())
-      .then((data) => (this.projects = data))
+      .then((data) => {
+        data.map((rs) => {
+          this.projects.push(rs);
+        });
+      })
       .catch((err) => console.log(err.message));
   },
   methods: {

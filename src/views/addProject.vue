@@ -22,9 +22,12 @@ export default {
         description: this.description,
         completed: false,
       };
-      fetch("https://learningtoolxd.netlify.app/projects", {
+      fetch("https://62a05917202ceef7086b59b7.mockapi.io/dom/db", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
         body: JSON.stringify(project),
       }).then(() => {
         this.$router.push("/");

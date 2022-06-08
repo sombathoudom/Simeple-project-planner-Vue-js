@@ -26,7 +26,8 @@ export default {
   data() {
     return {
       showDescription: false,
-      url: "https://learningtoolxd.netlify.app/projects" + this.project.id, //it's from props
+      url:
+        "https://62a05917202ceef7086b59b7.mockapi.io/dom/db" + this.project.id, //it's from props
       icon: "expand_more",
       toogle: 1,
     };
@@ -42,14 +43,22 @@ export default {
       this.toogle++;
     },
     deleteProject() {
-      fetch(this.url, { method: "DELETE" })
+      fetch(this.url, {
+        method: "DELETE",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      })
         .then(() => this.$emit("delete", this.project.id))
         .catch((err) => console.error(err));
     },
     completeProject() {
       fetch(this.url, {
-        method: "PATCH",
-        header: { "Content-Type": "application/json" },
+        method: "PUT",
+        header: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
         body: JSON.stringify({ completed: !this.project.completed }),
       })
         .then(() => {

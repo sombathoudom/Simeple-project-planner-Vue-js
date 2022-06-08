@@ -22,7 +22,7 @@ export default {
       title: "",
       description: "",
       complete: "",
-      url: "https://learningtoolxd.netlify.app/projects/" + this.id, //id is a props
+      url: "https://62a05917202ceef7086b59b7.mockapi.io/dom/db/" + this.id, //id is a props
     };
   },
   mounted() {
@@ -37,8 +37,11 @@ export default {
   methods: {
     handleUpdate() {
       fetch(this.url, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
         body: JSON.stringify({
           title: this.title,
           description: this.description,
