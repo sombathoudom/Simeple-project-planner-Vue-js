@@ -1,7 +1,7 @@
 <template>
   <div class="project" :class="{ completed: project.completed }">
     <div class="actions">
-      <h3 @click="handleShowDetail">
+      <h3 @click="handleShowDetail" style="display: flex">
         {{ project.title }}
         <span class="material-icons down"> {{ this.icon }} </span>
       </h3>
