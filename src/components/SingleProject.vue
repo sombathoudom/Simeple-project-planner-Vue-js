@@ -26,7 +26,7 @@ export default {
   data() {
     return {
       showDescription: false,
-      url: "http://localhost:3000/projects" + this.project.id, //it's from props
+      url: "https://learningtoolxd.netlify.app/projects" + this.project.id, //it's from props
       icon: "expand_more",
       toogle: 1,
     };

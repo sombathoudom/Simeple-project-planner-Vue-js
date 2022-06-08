@@ -22,7 +22,7 @@ export default {
       title: "",
       description: "",
       complete: "",
-      url: "  http://localhost:3000/projects/" + this.id, //id is a props
+      url: "https://learningtoolxd.netlify.app/projects/" + this.id, //id is a props
     };
   },
   mounted() {

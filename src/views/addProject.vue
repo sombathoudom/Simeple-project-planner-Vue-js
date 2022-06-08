@@ -22,7 +22,7 @@ export default {
         description: this.description,
         completed: false,
       };
-      fetch("http://localhost:3000/projects", {
+      fetch("https://learningtoolxd.netlify.app/projects", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(project),
